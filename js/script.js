@@ -54,16 +54,39 @@ posts.forEach((singlePost) => {
                         <div class="post__footer">
                             <div class="likes js-likes">
                                 <div class="likes__cta">
-                                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                                    <a class="like-button  js-like-button" href="##" data-postid="${singlePost.id}">
                                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                                         <span class="like-button__label">Mi Piace</span>
                                     </a>
                                 </div>
                                 <div class="likes__counter">
-                                    Piace a <b id="like-counter-1" class="js-likes-counter">${singlePost.likes}</b> persone
+                                    Piace a <b id=${singlePost.id} class="js-likes-counter">${singlePost.likes}</b> persone
                                 </div>
                             </div> 
                         </div>
                         `;
     container.append(newPost);
 }); 
+
+const singlePostLikesCounter = [];
+const button = document.querySelectorAll('.likes__cta');
+
+for(let i = 0; i < button.length; i++){
+    button[i].addEventListener('click', () => {
+        const buttonClicked = document.querySelectorAll('.js-like-button');
+        let likesCounter = document.querySelectorAll('.js-likes-counter');
+
+        if (buttonClicked[i].classList.contains('like-button--liked') == true){
+            buttonClicked[i].classList.remove('like-button--liked');
+            likesCounter[i].innerHTML --;
+        }
+        else{
+            buttonClicked[i].classList.add('like-button--liked');
+            likesCounter[i].innerHTML ++;
+            singlePostLikesCounter.push(posts.id)
+        }
+    }
+    
+    )
+}
+
